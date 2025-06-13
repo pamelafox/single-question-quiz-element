@@ -1,19 +1,16 @@
 import terser from '@rollup/plugin-terser';
 import resolve from '@rollup/plugin-node-resolve';
-import copy from 'rollup-plugin-copy';
-import webWorkerLoader from 'rollup-plugin-web-worker-loader';
 
 import pkg from './package.json';
 
 export default {
-  input: 'src/code-exercise.js',
+  input: 'src/quiz-element.js',
   output: {
-    name: 'CodeExerciseElement',
+    name: 'QuizElement',
     file: pkg.browser,
     format: 'umd',
   },
   plugins: [
-    webWorkerLoader(/* configuration */),
     resolve(),
     terser({
       ecma: 2021,
@@ -25,8 +22,5 @@ export default {
         },
       },
     }),
-	copy({
-		targets: [{src: 'src/worker.js', dest: 'dist/'}],
-	}),
   ],
 };

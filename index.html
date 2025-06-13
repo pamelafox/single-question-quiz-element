@@ -3,39 +3,2430 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Python code editor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <title>Simple quiz element</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous" />
     <style>
-      .cm-editor {
-        width: 100%;
-        height: auto;
-        border: 1px solid #ccc;
-      }
-      #code-exercise-wrapper {
-        width: 100%;
-        height: 600px;
+      quiz-element form {
+        margin-bottom: 40px;
       }
     </style>
-    <style></style>
   </head>
   <body>
-    <div class="container">
-      <h1>Python code editor example</h1>
-      <code-exercise-element exercise-name="lesser-num">
-def lesser_num(num1, num2):
-    """ Returns whichever number is lowest of the two supplied numbers.
+    <div class="container py-4">
+      <h2>Nested call expressions</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">Is any additional code required for the above call expression to work?</p>
 
-    >>> lesser_num(45, 10)
-    10
-    >>> lesser_num(-1, 30)
-    -1
-    >>> lesser_num(20, 20)
-    20
-    """
-    # YOUR CODE HERE
-      </code-exercise-element>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="quizOptions" id="option1" value="0" data-correct="false" />
+              <label class="form-check-label" for="option1"> No, <code>add(18, 69)</code> should work on its own. </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                This is incorrect. Since <code>add</code> comes from the <code>operator</code> module, it must be imported
+                first. Otherwise Python does not know where to find the <code>add</code> function definition.
+              </aside>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="quizOptions" id="option2" value="1" data-correct="false" />
+              <label class="form-check-label" for="option2"> Yes, there needs to be an import statement below it. </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                This answer is almost correct, but the import statement needs to come before the line of code.
+              </aside>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="quizOptions" id="option3" value="2" data-correct="true" />
+              <label class="form-check-label" for="option3"> Yes, there needs to be an import statement above it. </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                This answer is correct, there needs to be <code>from operator import add</code> before this line of code.
+              </aside>
+            </div>
+
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              The <code>add</code> function is not actually one of the globally available built-in Python functions (like
+              <code>pow</code>, <code>max</code>, <code>min</code>, and <code>abs</code>), so it must be imported from the
+              <code>operator</code> module. There needs to be a line above the code, <code>from operator import add</code>.
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">What's the final step for that call expression?</p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-d2d59621-793f-4915-9d19-3e13820a6143"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-d2d59621-793f-4915-9d19-3e13820a6143"
+                ><p>Looking up the outer <code>add</code> function to make sure it's defined in the environment.</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>No, that's actually the very first step.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f26b957f-d419-4849-a4da-1d77b180dfc5"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-f26b957f-d419-4849-a4da-1d77b180dfc5"
+                ><p>Calling the <code>add</code> function on the values 30 and 15</p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  That's correct! Once it finally has evaluated the operands to find the values of 30 and 15, it can apply the
+                  <code>add</code> function to them.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f9a29f81-2db3-4d16-85e0-da7ed3145eee"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-f9a29f81-2db3-4d16-85e0-da7ed3145eee"
+                ><p>Calling the <code>mul</code> function on the values 4 and 6</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>No, this step is actually done fairly early, since it's the inner-most expression.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-fb4b0d56-aac3-486e-9f14-40fcdc17eb8d"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-fb4b0d56-aac3-486e-9f14-40fcdc17eb8d"
+                ><p>Calling the <code>add</code> function on the values 6 and 24</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  No, that sounds like the step that evaluates the inner <code>add</code>, not the final step of applying the
+                  outer <code>add</code>.
+                </p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Names and values</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">How many variables are in that program?</p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="4" required />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>
+                ✅ Correct! The 4 variables are <code>pi</code>, <code>radius</code>, <code>area</code>, and <code>circ</code>.
+              </p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ There are 4 variables: <code>pi</code>, <code>radius</code>, <code>area</code>, and <code>circ</code>.</p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">How many times is the <code>radius</code> variable referenced?</p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="2" required />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>
+                ✅ That's correct. The <code>radius</code> variable is referenced twice, once when calculating
+                <code>area</code> and once when calculating <code>circ</code>.
+              </p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>
+                ❌ The <code>radius</code> variable is referenced twice, once when calculating <code>area</code> and once when
+                calculating <code>circ</code>.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">What is my daughter's last name?</p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-069ca5fc-b84f-40ef-9255-731b03305593"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-069ca5fc-b84f-40ef-9255-731b03305593"><p>Gray Fox</p> </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>Almost, but if I wanted a space between the names, I would need to concatenate a space specifically.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f3361677-bac8-4350-abfa-c8d89228f8f7"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-f3361677-bac8-4350-abfa-c8d89228f8f7"><p>Gray-Fox</p> </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>There are no hyphen in either the referenced variables or the string concatenation expression.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-39b29883-ad1e-45c7-8354-de07c5ee43a3"
+                value="2"
+                data-correct="true" />
+              <label class="form-check-label" for="option-39b29883-ad1e-45c7-8354-de07c5ee43a3"><p>GrayFox</p> </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>That's right, the final expression concatenates the two variables together, with no space between them.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">Your prediction:</p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-bea5080e-60e5-4186-8a72-cf5dffd06318"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-bea5080e-60e5-4186-8a72-cf5dffd06318"
+                ><p>It will result in an error.</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>In Python, it is not an error to re-assign a name. It is an error in other languages, however.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-e5ec8d6b-098d-4838-9926-7d7aeaef46e3"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-e5ec8d6b-098d-4838-9926-7d7aeaef46e3"
+                ><p>It won't error, but <code>my_name</code> will still be "Pamela" after it runs.</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>Both lines of code will successfully run, changing the value of <code>my_name</code>.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f16d9d7f-9928-440b-9e78-6354a6f47a45"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-f16d9d7f-9928-440b-9e78-6354a6f47a45"
+                ><p>It won't error, and <code>my_name</code> will be set to "ela" after it runs.</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>The second line of code will set <code>my_name</code> to the previous value plus "ela".</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-d71e6a21-5ee3-4d03-8f6a-72347e4186ba"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-d71e6a21-5ee3-4d03-8f6a-72347e4186ba"
+                ><p>It won't error, and <code>my_name</code> will be set to "Pamelaela" after it runs.</p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>You got it!</p></aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold">Which of these variable names should you avoid in Python?</p>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-9ec564a9-15d8-47dd-bd3b-fb387a498151"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-9ec564a9-15d8-47dd-bd3b-fb387a498151"
+                ><p><code>fav_movie</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>Actually, this is a nice short variable name following all the conventions.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-4f914006-6f71-4e82-acf2-47b055e0d477"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-4f914006-6f71-4e82-acf2-47b055e0d477"
+                ><p><code>#1_movie</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>Correct: Names can't start with a number sign.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-04cad5b1-180a-4e1b-aa0b-6adf79224243"
+                value="2"
+                data-correct="true" />
+              <label class="form-check-label" for="option-04cad5b1-180a-4e1b-aa0b-6adf79224243"
+                ><p><code>1st_movie</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>Correct: Names can't start with a number.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-5adcfc3d-816c-474d-b8d7-b035b2194950"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-5adcfc3d-816c-474d-b8d7-b035b2194950"
+                ><p><code>fav-movie</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>Correct: Names can't contain hyphens.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-1b431640-fbdc-415a-a793-14513e57c17a"
+                value="4"
+                data-correct="true" />
+              <label class="form-check-label" for="option-1b431640-fbdc-415a-a793-14513e57c17a"
+                ><p><code>favMovie</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  Correct: Python will let you use this name, but it should still be avoided. Variable names should use
+                  underscores to separate words, not uppercased letters.
+                </p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              <p>Only one of these variable names follows the rules and conventions, <code>fav_movie</code>.</p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Functions</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🤔 Brainstorming Time</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold"></p>
+            <p>If you could create any function, what would your function be able to do? What would be the input/output?</p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold"></p>
+            <p>Where's the bug?</p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              <p>The code after the return statement will not be executed that line belongs before the return.</p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold"></p>
+            <p>Where's the bug?</p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              <p>
+                The function body is referring to variables that don't seem to exist. Most likely, they should be parameters in
+                the function signature.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <p class="mb-4 fw-bold"></p>
+            <p>Where's the bug?</p>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              <p>
+                The function body does not return any value. However, the code that calls it tries to use the result of the
+                expression. It should have a return statement that returns the sum.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>More on Functions</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>Which function has a side effect?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-85e26578-45d8-482b-a979-0f8607ab92a6"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-85e26578-45d8-482b-a979-0f8607ab92a6"><p>square_num1</p> </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>All it does is return a value, so it has no side effects.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-ecf0ca3b-ef19-4e86-a257-76dffa11eff4"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-ecf0ca3b-ef19-4e86-a257-76dffa11eff4"><p>square_num2</p> </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>It calls the print function, so this function does have a side effect.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              <p>
+                The first function <code>square_num1</code> just returns a value, so it has no side effects. The second
+                function <code>square_num2</code> calls the <code>print</code> function, so it does have a side effect (of
+                printing to the console).
+              </p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What data type does each function return?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-c851aa90-c04a-480f-8413-a5cbc5516512"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-c851aa90-c04a-480f-8413-a5cbc5516512"
+                ><p>
+                  The first function <code>square_num1</code> returns <code>None</code>, while the second function
+                  <code>square_num2</code> returns a number.
+                </p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  It's actually the reverse - <code>square_num1</code> returns a number whereas
+                  <code>square_num2</code> returns <code>None</code>.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-32d30851-58f7-401e-983e-9ced945e056a"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-32d30851-58f7-401e-983e-9ced945e056a"
+                ><p>
+                  The first function <code>square_num1</code> returns a number, while the second function
+                  <code>square_num2</code> returns <code>None</code>.
+                </p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>You got it! The second function returns <code>None</code> since it has no explicit return statement.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-1c3ba3f4-854a-4ba7-ad63-05b1f171bf5d"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-1c3ba3f4-854a-4ba7-ad63-05b1f171bf5d"
+                ><p>Both functions return <code>None</code>.</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  The second function <code>square_num2</code> returns <code>None</code> since it has no explicit return
+                  statement, but the first one does return a number.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-c5a2e54b-4b0c-4e02-a328-5322c9290dde"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-c5a2e54b-4b0c-4e02-a328-5322c9290dde"
+                ><p>Both functions return a number.</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  Only <code>square_num1</code> returns a number, the second one returns <code>None</code> since it has no
+                  explicit return statement.
+                </p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Logical expressions</h2>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>Which of the following function calls would return True?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-b17a2a7d-4a76-466b-ba7b-bfc77e49558f"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-b17a2a7d-4a76-466b-ba7b-bfc77e49558f"
+                ><p><code>should_wear_jacket(False, False)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  Since the return statement uses <code>or</code> and neither of the arguments are <code>True</code>, this call
+                  would return <code>False</code>.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-52b0c9ef-eac1-438b-bb5e-e99b039932ba"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-52b0c9ef-eac1-438b-bb5e-e99b039932ba"
+                ><p><code>should_wear_jacket(True, False)</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  This is one of the calls that would return <code>True</code>, since at least one of the arguments is
+                  <code>True</code>.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-32297451-a7dc-4e36-a534-8797a0219fc7"
+                value="2"
+                data-correct="true" />
+              <label class="form-check-label" for="option-32297451-a7dc-4e36-a534-8797a0219fc7"
+                ><p><code>should_wear_jacket(False, True)</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  This is one of the calls that would return <code>True</code>, since at least one of the arguments is
+                  <code>True</code>.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-de04e48b-fde0-42a1-91f2-07394e3201eb"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-de04e48b-fde0-42a1-91f2-07394e3201eb"
+                ><p><code>should_wear_jacket(True, True)</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  This is one of the calls that would return <code>True</code>, since at least one of the arguments is
+                  <code>True</code>.
+                </p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-secondary mt-3" style="display: none">
+              <p>
+                Since the return statement uses an <code>or</code> on the two parameters, one of the passed in arguments must
+                be <code>True</code> for the call to return <code>True</code>.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Conditionals</h2>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>In which situations will <code>clothing</code> be assigned to "jacket"?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-d7240054-fbe6-437b-a530-c1816614ca8b"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-d7240054-fbe6-437b-a530-c1816614ca8b"
+                ><p>when <code>temperature</code> is 0</p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>0 is less than 32, so the statement inside the <code>if</code> would indeed execute.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-02f0315f-98df-480f-914c-dcc9038b4f0f"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-02f0315f-98df-480f-914c-dcc9038b4f0f"
+                ><p>when <code>temperature</code> is 31</p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>31 is less than 32, so the statement inside the <code>if</code> would indeed execute.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-2dcf9ed6-8354-465d-889d-5902bf442fa6"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-2dcf9ed6-8354-465d-889d-5902bf442fa6"
+                ><p>when <code>temperature</code> is 32</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>32 is <em>not</em> less than 32, so the statement inside the <code>if</code> would <em>not</em> execute.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-a23da2e2-99ee-40ac-93eb-e9ec20df99dd"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-a23da2e2-99ee-40ac-93eb-e9ec20df99dd"
+                ><p>when <code>temperature</code> is 65</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>65 is <em>not</em> less than 32, so the statement inside the <code>if</code> would <em>not</em> execute.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>While Loops</h2>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What will be the first number displayed?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="27" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ That's right!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The first number displayed is 27.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What will be the last number displayed?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="45" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ That's correct!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The last number displayed is 45.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>How many times will this loop iterate?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="3" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ That's right!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The loop will iterate 3 times.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What will be the first number displayed?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="27" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true"><p>✅ You got it!</p></aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The first number displayed is 27.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What will be the last number displayed?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="90" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Woot, that's correct!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The last number displayed is 90.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>How many times will this loop iterate?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="8" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Yep, that's right!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The loop will iterate 8 times.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What will be the first number displayed?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="27" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Yep, that's correct!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The first number displayed is 27.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>What will be the last number displayed?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="81" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ You figured it out, nice!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The last number displayed is 81.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>How many times will this loop iterate?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="4" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ You got it!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The loop will iterate 4 times.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Loops and Ranges</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold">
+              <p>Which call to <code>range</code> would construct the sequence 1, 2, 3, 4, 5, 6, 7, 8, 9, 10?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-6a94c9fc-8e46-48a5-9f3c-bb46330e1afe"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-6a94c9fc-8e46-48a5-9f3c-bb46330e1afe"
+                ><p><code>range(10)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  This range would include 0 (the default start value) and exclude 10 (since the range stops right before the
+                  end value).
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-b982d0e1-6633-4a85-a950-6925624dccdc"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-b982d0e1-6633-4a85-a950-6925624dccdc"
+                ><p><code>range(1, 10)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  This range would start correctly from 1 but it would stop at 9, since the range stops right before the end
+                  value.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-bef5fbeb-02f4-4f10-8d36-c650546c131b"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-bef5fbeb-02f4-4f10-8d36-c650546c131b"
+                ><p><code>range(11)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would start from 0, since that's the default start value if only one argument is given.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-b7987845-82b1-4168-b131-4c9a90b8d992"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-b7987845-82b1-4168-b131-4c9a90b8d992"
+                ><p><code>range(1, 11)</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>That's correct, this range would start from 1 and end with 10.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold">
+              <p>Which call to <code>range</code> would construct the sequence 10, 11, 12, 13, 14, 15?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-8acf18ff-837b-4a06-b78b-27068e38f23c"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-8acf18ff-837b-4a06-b78b-27068e38f23c"
+                ><p><code>range(15)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  This range would start from 0, the default start value if only one argument is given. Plus, this range would
+                  end at 14, not 15.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-13668d32-5efb-4257-82d4-d6cc6f70da47"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-13668d32-5efb-4257-82d4-d6cc6f70da47"
+                ><p><code>range(16)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would start from 0, the default start value if only one argument is given.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-867bd126-ae09-414f-896d-f62c7adce8e0"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-867bd126-ae09-414f-896d-f62c7adce8e0"
+                ><p><code>range(10, 15)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would start from 10 but end at 14, since a range stops just before the end value.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-51212073-e8a1-45be-98aa-37e1783e602c"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-51212073-e8a1-45be-98aa-37e1783e602c"
+                ><p><code>range(10, 16)</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>That's right, this range would start from 10 and end with 15.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-d210a903-1d54-4463-864e-6fc3d8fb7bb0"
+                value="4"
+                data-correct="false" />
+              <label class="form-check-label" for="option-d210a903-1d54-4463-864e-6fc3d8fb7bb0"
+                ><p><code>range(9, 16)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would start too early, at 9, since the start value is the first value in the range.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold">
+              <p>Which call to <code>range</code> would construct the sequence 3, 6, 9, 12, 15?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-4edfbad8-5bc9-4c63-8d1c-3b8e087a662d"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-4edfbad8-5bc9-4c63-8d1c-3b8e087a662d"
+                ><p><code>range(3, 16)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  This range would include <em>all</em> the numbers from 3 to 15; it wouldn't skip any numbers as requested.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-6483166f-6328-4d5f-a744-b51848a785df"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-6483166f-6328-4d5f-a744-b51848a785df"
+                ><p><code>range(3, 15, 3)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would only include 3, 6, 9, and 12, since it stops just before the end value of 15.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-3658f35b-bdac-475e-b979-9df04310fae3"
+                value="2"
+                data-correct="true" />
+              <label class="form-check-label" for="option-3658f35b-bdac-475e-b979-9df04310fae3"
+                ><p><code>range(3, 16, 3)</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>Yep, this would generate a sequence that starts at 3, increments by 3, and ends with 15.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-3b885fdb-25fa-470c-9b55-cf7fa7c0760f"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-3b885fdb-25fa-470c-9b55-cf7fa7c0760f"
+                ><p><code>range(3, 15, 2)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would include 3, 5, 7, 9, 11, and 14, so it is not skipping as many numbers as requested.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-140b4ef1-4217-437f-bda5-695928cbbdbf"
+                value="4"
+                data-correct="false" />
+              <label class="form-check-label" for="option-140b4ef1-4217-437f-bda5-695928cbbdbf"
+                ><p><code>range(3, 16, 2)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This range would include 3, 5, 7, 9, 11, and 14, so it is not skipping as many numbers as requested.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Lists</h2>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>Which expression(s) would evaluate to "Robyn"?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-ad7b81dc-e9cc-4749-86e8-9bc663226d6d"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-ad7b81dc-e9cc-4749-86e8-9bc663226d6d"
+                ><p><code>fav_singers[0]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>✅ Since "Robyn" is the first item, referencing the list at index 0 will retrieve it.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-2cc5b3cf-ef86-40ab-a168-fd376e57c855"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-2cc5b3cf-ef86-40ab-a168-fd376e57c855"
+                ><p><code>fav_singers[1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌Since 1 is the index for the second item in the list, this would retrieve "Ed Sheeran" instead.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-dede712c-de8e-4946-b770-9e094fe1f140"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-dede712c-de8e-4946-b770-9e094fe1f140"
+                ><p><code>fav_singers[-1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  ❌This negative index goes backwards from the end of the list, so this would retrieve "Ben Platt" instead.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-c9760bd4-1cd0-44ad-b7c5-5af0c663aa06"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-c9760bd4-1cd0-44ad-b7c5-5af0c663aa06"
+                ><p><code>fav_singers[-5]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌This negative index isn't negative enough; this would retrieve "Ed Sheeran".</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-551817e9-fbe9-47e2-a30e-da9e61d29128"
+                value="4"
+                data-correct="true" />
+              <label class="form-check-label" for="option-551817e9-fbe9-47e2-a30e-da9e61d29128"
+                ><p><code>fav_singers[-6]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>✅ This negative index would go backwards 6 items from the end of the list and retrieve "Robyn".</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>Which expression(s) would evaluate to "Ben Platt"?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-1e738f46-7267-44f8-bc83-8c4276d1ea2d"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-1e738f46-7267-44f8-bc83-8c4276d1ea2d"
+                ><p><code>fav_singers[5]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  ✅ Since this is a 6-item list, the index of the final item is 5, so this expression successfully retrieves
+                  "Ben Platt".
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-577133ae-4e10-4a03-8477-401c32df4499"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-577133ae-4e10-4a03-8477-401c32df4499"
+                ><p><code>fav_singers[6]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌This would result in an error, since the final index in a 6-item list is 5, not 6.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-b0beaad6-280e-4612-919e-854915a4977a"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-b0beaad6-280e-4612-919e-854915a4977a"
+                ><p><code>fav_singers[-0]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌An index of -0 is treated the same as an index of 0, so this would retrieve "Robyn".</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-9986fa5f-dca1-42c2-bad4-0e682655bd5a"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-9986fa5f-dca1-42c2-bad4-0e682655bd5a"
+                ><p><code>fav_singers[-1]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>
+                  ✅ A negative index goes backwards from the end of the list, starting at -1, so this expression does retrieve
+                  "Ben Platt".
+                </p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>List Mutation</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>Using bracket notation, write the line of code that would change "Constantinople" to "Istanbul".</p>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="quizAnswer"
+                data-regexcheck="cities\[(1|-4)\]\s*=\s*(['&quot;]Istanbul['&quot;])"
+                required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Nice, you got it!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ A correct line of code is <code>cities[1] = 'Istanbul'</code> or <code>cities[-4] = 'Istanbul'</code>.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>Using bracket notation, write the line of code that would change "Leningrad" to "Saint Petersburg".</p>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="quizAnswer"
+                data-regexcheck="cities\[(3|-2)\]\s*=\s*(['&quot;]Saint Petersburg['&quot;])"
+                required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ That's correct!</p>
+            </aside>
+
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ A correct line of code is <code>cities[3] = 'Saint Petersburg'</code>.</p>
+            </aside>
+
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>Using bracket notation, write the line of code that would change "Peking" to "Beijing".</p>
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="quizAnswer"
+                data-regexcheck="cities\[(-1|4)\]\s*=\s*(['&quot;]Beijing['&quot;])"
+                required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Nice, that's it!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ A correct line of code is <code>cities[-1] = 'Beijing'</code>.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>Write a line of code that removes the last item.</p></div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="quizAnswer"
+                data-regexcheck="(planets\.pop\((-1)?\))|(planets\.remove\(['&quot;]Pluto['&quot;]\))"
+                required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true"><p>✅ That does it!</p></aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ A correct line of code is <code>planets.pop()</code> or <code>planets.remove('Pluto')</code>.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Nested Lists</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>What's the length of <code>gymnasts</code>?</p>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="3" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Yep, that's right.</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The correct answer is 3, since there are three items in the outer list.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>What's the length of <code>gymnasts[0]</code>?</p>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="5" required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ Ding-ding!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ The correct answer is 5, since there are five items in the first inner list.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>Using bracket notation, how would you access the final score of 8.8?</p></div>
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                name="quizAnswer"
+                data-regexcheck="gymnasts\[(2|-1)\]\[(4|-1)\]"
+                required />
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ You got it!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>❌ A correct answer is <code>gymnasts[2][4]</code> or <code>gymnasts[-1][-1]</code>.</p>
+            </aside>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>String Operations</h2>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>How would you use bracket notation to access "P"?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-cb6d0648-2324-4eea-a341-ea885964a117"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-cb6d0648-2324-4eea-a341-ea885964a117"
+                ><p><code>author_name[0]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>That's right, the first letter is at index 0.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-25fdfaf0-d355-44ae-9b9b-627ec14c6820"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-25fdfaf0-d355-44ae-9b9b-627ec14c6820"
+                ><p><code>author_name[1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>That would retrieve the second letter, not the first.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-104e6cfd-a5c2-43d0-aa5c-2e20b01239f5"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-104e6cfd-a5c2-43d0-aa5c-2e20b01239f5"
+                ><p><code>author_name[-1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>That would retrieve the last letter, not the first.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>How would you use bracket notation to access "S"?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-6601d0b2-9076-4d81-9ff7-2f31604e1ba4"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-6601d0b2-9076-4d81-9ff7-2f31604e1ba4"
+                ><p><code>author_name[1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>The character at index 1 is the space before "S", not the letter "S".</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-3173d34a-f268-46b2-8a96-b8d928f0c8b1"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-3173d34a-f268-46b2-8a96-b8d928f0c8b1"
+                ><p><code>author_name[2]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>That's right!</p></aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-17e9e52e-576f-4c4b-8eac-24e6666aacc5"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-17e9e52e-576f-4c4b-8eac-24e6666aacc5"
+                ><p><code>author_name[3]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>The character at index 3 is the space after "S", not the letter "S".</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold"><p>How would you use bracket notation to access "Fox"?</p></div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="quizAnswer" data-regexcheck="author_name\[4:7?\]" required />
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+            <aside class="alert alert-success mt-3" style="display: none" data-correct="true">
+              <p>✅ That's correct!</p>
+            </aside>
+            <aside class="alert alert-danger mt-3" style="display: none" data-correct="false">
+              <p>
+                ❌ You can slice the last three letters by specifying the start and end indices in bracket notation. The start
+                index would be 4 (for "F") and the end index would be 7, because it needs to be just after the last desired
+                index (6 for "x"). The whole expression would be <code>author_name[4:7]</code>. You can also leave off the end
+                index, and Python will slice until the end of the list, so that'd be <code>author_name[4:]</code>.
+              </p>
+            </aside>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold">
+              <p>What expression would tell us if the string variable <code>mystery</code> ends with the letters "ing"?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-8e3b6c94-842a-4ad2-9d08-9265d449072c"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-8e3b6c94-842a-4ad2-9d08-9265d449072c"
+                ><p><code>mystery.endswith(ing)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  ❌ This is almost correct, except <code>ing</code> needs to be in quotes so it is treated as a string instead
+                  of a variable name.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-7263d9ea-6e77-4156-9e7c-362c3e6ab987"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-7263d9ea-6e77-4156-9e7c-362c3e6ab987"
+                ><p><code>mystery.endswith("ing")</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>✅ That's right!</p></aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-7342b5d9-16cb-455b-a47f-688fe42d1edd"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-7342b5d9-16cb-455b-a47f-688fe42d1edd"
+                ><p><code>endswith(mystery, ing)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  ❌ Since <code>endswith</code> is a method, it must be called on <code>mystery</code> using dot notation.
+                  Plus, <code>ing</code> needs to be in quotes.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-7d697cbf-03e4-4e06-906b-e3017253d734"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-7d697cbf-03e4-4e06-906b-e3017253d734">
+                <p><code>endswith(mystery, "ing")</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  ❌ Since <code>endswith</code> is a method, it must be called on <code>mystery</code> using dot notation.
+                </p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Dictionaries</h2>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold">
+              <p>What value would <code>users["pamelafox"]</code> retrieve now?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-a401f649-961c-45db-9067-6bc8e0693d81"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-a401f649-961c-45db-9067-6bc8e0693d81"
+                ><p>'b3stp@ssEvErDontHackMe'</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This was the original value, but it was changed (twice).</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-a2b40b73-6173-4e0f-b4a3-018cf302e5a9"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-a2b40b73-6173-4e0f-b4a3-018cf302e5a9"
+                ><p>'EV3Nb3tt3Rp@ssw0rd!'</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This was the second value, but it was changed after.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f7877967-77e1-4bd1-a5d5-11cb201cb183"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-f7877967-77e1-4bd1-a5d5-11cb201cb183"
+                ><p>'itsLongerSoItsMoreSecure!!'</p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  The final line of code added this string to the existing value using <code>+=</code>, so the value should
+                  start with 'EV3Nb3tt3Rp@ssw0rd!' and end with this string.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-b7cc38ae-54c2-4609-a237-17e966c58c96"
+                value="3"
+                data-correct="true" />
+              <label class="form-check-label" for="option-b7cc38ae-54c2-4609-a237-17e966c58c96"
+                ><p>'EV3Nb3tt3Rp@ssw0rd!itsLongerSoItsMoreSecure!!'</p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>You got it!</p></aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question">
+            <div class="mb-4 fw-bold">
+              <p>What expression would retrieve the name "Marbled cellar spider" from the <code>spiders</code> dict?</p>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-0543151a-cc13-4170-9dfe-47d25f74fa4e"
+                value="0"
+                data-correct="false" />
+              <label class="form-check-label" for="option-0543151a-cc13-4170-9dfe-47d25f74fa4e">
+                <p><code>spiders[1]["name"]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ The values must be retrieved by key, not by index. Dictionaries don't have indices.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-51855d47-cdc9-44af-b32a-1ccbac324120"
+                value="1"
+                data-correct="true" />
+              <label class="form-check-label" for="option-51855d47-cdc9-44af-b32a-1ccbac324120">
+                <p><code>spiders["holocnemus pluchei"]["name"]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>✅ That's one way to retrieve it, yep!</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-328057b7-d406-4df8-889f-7216d2674e50"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-328057b7-d406-4df8-889f-7216d2674e50">
+                <p><code>spiders["holocnemus pluchei"].name</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ Bracket notation must be used with the keys, not dot notation.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-5ef3f03d-952a-4fde-be79-fb3317fcbafc"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-5ef3f03d-952a-4fde-be79-fb3317fcbafc">
+                <p><code>spiders[1][0]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ The values must be retrieved by key, not by index. Dictionaries don't have indices.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                name="quizOptions"
+                id="option-126f9e1f-6ff9-49c3-9bcf-a5936f16590c"
+                value="4"
+                data-correct="false" />
+              <label class="form-check-label" for="option-126f9e1f-6ff9-49c3-9bcf-a5936f16590c">
+                <p><code>spiders.get("holocnemus pluchei").get("name")</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none">
+                <p>✅ This expression is longer than the option that uses bracket notation, but it also works.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <h2>Exercise: Dictionaries</h2>
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>What expression would access the title of the first book?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-1847c92f-3e81-4295-9fc4-ff27aefeb111"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-1847c92f-3e81-4295-9fc4-ff27aefeb111"
+                ><p><code>books[0]["title"]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>You got it!</p></aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-832b470c-258a-434c-bc9c-f6f10fa8aabc"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-832b470c-258a-434c-bc9c-f6f10fa8aabc"
+                ><p><code>books["title"][0]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>The outer data type is a list, so the first set of square brackets must contain an index, not a key.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f7ad82c8-60f3-4cc0-8b8a-ddcadc847814"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-f7ad82c8-60f3-4cc0-8b8a-ddcadc847814"
+                ><p><code>books[1]["title"]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This would access the title of the <em>second</em> book, since list indices start at 0.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-34f5db5f-5e7f-479f-88a8-d73670f93dcc"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-34f5db5f-5e7f-479f-88a8-d73670f93dcc"
+                ><p><code>books["title"][1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>The outer data type is a list, so the first set of square brackets must contain an index, not a key.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-385c2176-b769-42ec-8a12-8892f8e1da87"
+                value="4"
+                data-correct="false" />
+              <label class="form-check-label" for="option-385c2176-b769-42ec-8a12-8892f8e1da87"
+                ><p><code>books[0].title</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>A dictionary value must be accessed with bracket notation, not dot notation.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-8ff1bdc6-2f1f-434d-938d-b65a2ffd38db"
+                value="5"
+                data-correct="false" />
+              <label class="form-check-label" for="option-8ff1bdc6-2f1f-434d-938d-b65a2ffd38db"
+                ><p><code>books[1].title</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>A dictionary value must be accessed with bracket notation, not dot notation.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>What expression would report how many keys are in the second book dict?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-c17e78ce-511d-4d6e-91dd-92cf2c9d9019"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-c17e78ce-511d-4d6e-91dd-92cf2c9d9019"
+                ><p><code>len(books[1])</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>That's right!</p></aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-ee19c3a3-ee6f-4bdf-86d9-0efa76a79c1a"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-ee19c3a3-ee6f-4bdf-86d9-0efa76a79c1a"
+                ><p><code>len(books[0])</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  This reports how many keys are in the first dict, not the second dict. It's the same in this case, but it may
+                  not always be.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-070a23c9-a024-4d5c-a50d-c30ff53925cb"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-070a23c9-a024-4d5c-a50d-c30ff53925cb"
+                ><p><code>len(books)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>This reports how many items are in the list.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>What expression would access the title of the first book?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-8cf133e5-13f7-43ca-b963-38068e122ba9"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-8cf133e5-13f7-43ca-b963-38068e122ba9"
+                ><p><code>books[0]["title"]</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>✅ You got it!</p></aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-ae61ae5b-8082-47b4-97fd-3e029e993eca"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-ae61ae5b-8082-47b4-97fd-3e029e993eca"
+                ><p><code>books["title"][0]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ The outer data type is a list, so the first set of square brackets must contain an index, not a key.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-3becfacb-d816-49ad-be12-a0396678f5d5"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-3becfacb-d816-49ad-be12-a0396678f5d5"
+                ><p><code>books[1]["title"]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ This would access the title of the <em>second</em> book, since list indices start at 0.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-5154719a-11d8-43d1-8e4c-f86a5e9ed103"
+                value="3"
+                data-correct="false" />
+              <label class="form-check-label" for="option-5154719a-11d8-43d1-8e4c-f86a5e9ed103"
+                ><p><code>books["title"][1]</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ The outer data type is a list, so the first set of square brackets must contain an index, not a key.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-2e62d92d-a41f-494d-96af-1c20b77dda7c"
+                value="4"
+                data-correct="false" />
+              <label class="form-check-label" for="option-2e62d92d-a41f-494d-96af-1c20b77dda7c"
+                ><p><code>books[0].title</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ A dictionary value must be accessed with bracket notation, not dot notation.</p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-9952f0fa-b1c5-4ed1-b4e6-02ece29e82dc"
+                value="5"
+                data-correct="false" />
+              <label class="form-check-label" for="option-9952f0fa-b1c5-4ed1-b4e6-02ece29e82dc"
+                ><p><code>books[1].title</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ A dictionary value must be accessed with bracket notation, not dot notation.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+
+      <quiz-element>
+        <form class="bg-light rounded p-4">
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="h5 mb-0" style="font-size: smaller; text-transform: uppercase">🧠 Check Your Understanding</h2>
+          </div>
+          <div class="quiz-question" data-shuffle>
+            <div class="mb-4 fw-bold"><p>What expression would report how many keys are in the second book dict?</p></div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-f4850a43-fd38-4201-951b-7bdadbd89bc1"
+                value="0"
+                data-correct="true" />
+              <label class="form-check-label" for="option-f4850a43-fd38-4201-951b-7bdadbd89bc1"
+                ><p><code>len(books[1])</code></p>
+              </label>
+              <aside class="alert alert-success mt-2" style="display: none"><p>✅That's right!</p></aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-58fd15b9-ab50-49e8-b6ff-1b72f3575eb3"
+                value="1"
+                data-correct="false" />
+              <label class="form-check-label" for="option-58fd15b9-ab50-49e8-b6ff-1b72f3575eb3"
+                ><p><code>len(books[0])</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>
+                  ❌ This reports how many keys are in the first dict, not the second dict. It's the same in this case, but it may
+                  not always be.
+                </p>
+              </aside>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="radio"
+                name="quizOptions"
+                id="option-2895ee8a-268a-4c8f-96bf-51946f38c5f1"
+                value="2"
+                data-correct="false" />
+              <label class="form-check-label" for="option-2895ee8a-268a-4c8f-96bf-51946f38c5f1">
+                <p><code>len(books)</code></p>
+              </label>
+              <aside class="alert alert-danger mt-2" style="display: none">
+                <p>❌ This reports how many items are in the list.</p>
+              </aside>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-primary" data-action="submit">Submit Answer</button>
+              <button type="button" class="btn btn-secondary" style="display: none" data-action="reset">Start over</button>
+            </div>
+          </div>
+        </form>
+      </quiz-element>
+      
     </div>
-    <script src="dist/code-exercise.umd.js"></script>
-    <!--<script src="https://cdn.jsdelivr.net/npm/python-code-exercise-element@0.1.1/dist/code-exercise.umd.min.js"></script>-->
+    <script src="dist/quiz-element.umd.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/course-quiz-element@0.1.1/dist/quiz-element.umd.min.js"></script>-->
   </body>
 </html>
