@@ -4,9 +4,9 @@ import resolve from '@rollup/plugin-node-resolve';
 import pkg from './package.json';
 
 export default {
-  input: 'src/quiz-element.js',
+  input: 'src/single-question-quiz-element.js',
   output: {
-    name: 'QuizElement',
+    name: 'SingleQuestionQuizElement',
     file: pkg.browser,
     format: 'umd',
   },

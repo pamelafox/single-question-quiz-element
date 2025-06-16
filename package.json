@@ -1,14 +1,14 @@
 {
-  "name": "course-quiz-element",
-  "version": "0.1.4",
+  "name": "single-question-quiz-element",
+  "version": "0.1.5",
   "description": "A web component for a simple quiz",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pamelafox/course-quiz-element.git"
+    "url": "git+https://github.com/pamelafox/single-question-quiz-element.git"
   },
   "license": "Apache-2.0",
-  "module": "src/quiz-element.js",
-  "browser": "dist/quiz-element.umd.js",
+  "module": "src/single-question-quiz-element.js",
+  "browser": "dist/single-question-quiz-element.umd.js",
   "type": "module",
   "devDependencies": {
     "@babel/core": "^7.11.0",

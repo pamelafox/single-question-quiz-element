@@ -1,6 +1,7 @@
 import {LitElement} from 'lit';
+import * as storage from './user-storage.js';
 
-export class QuizElement extends LitElement {
+export class SingleQuestionQuizElement extends LitElement {
   // Don't create a shadow DOM, modify light DOM directly
   createRenderRoot() {
     return this;
@@ -21,7 +22,12 @@ export class QuizElement extends LitElement {
     const resetButton = form.querySelector('button[data-action="reset"]');
     const submitButton = form.querySelector('button[data-action="submit"]');
     if (resetButton) {
-      resetButton.addEventListener('click', () => this.resetQuiz(form));
+      resetButton.addEventListener('click', () => {
+        this.resetQuiz(form);
+        // Clear stored state when quiz is reset
+        const quizId = this.generateQuizId(form);
+        if (quizId) storage.set(quizId, null);
+      });
     }
 
     form.addEventListener('submit', (e) => {
@@ -31,6 +37,7 @@ export class QuizElement extends LitElement {
       const textInput = form.querySelector('input[name="quizAnswer"]');
       if (textInput) {
         this.handleTextSubmission(form, textInput, submitButton, resetButton);
+        this.saveQuizState(form);
         return;
       }
 
@@ -43,8 +50,15 @@ export class QuizElement extends LitElement {
         } else {
           this.handleRadioSubmission(form, selectedInputs[0], submitButton, resetButton);
         }
+        this.saveQuizState(form);
       }
     });
+
+    // Attempt to restore previous state
+    if (this.restoreQuizState(form)) {
+      // If state was restored, automatically submit the quiz
+      submitButton?.click();
+    }
   }
 
   shuffleOptions(quizQuestion) {
@@ -107,6 +121,23 @@ export class QuizElement extends LitElement {
     this.querySelectorAll('aside').forEach(aside => {
       aside.style.display = 'none';
     });
+
+    // Count total correct answers
+    const correctAnswers = form.querySelectorAll('input[type="checkbox"][data-correct="true"]');
+    const selectedCorrectAnswers = Array.from(selectedInputs).filter(input => 
+      input.getAttribute('data-correct') === 'true'
+    );
+
+    // If they've selected some but not all correct answers, show a special message
+    if (selectedCorrectAnswers.length > 0 && selectedCorrectAnswers.length < correctAnswers.length) {
+      const partialFeedback = document.createElement('aside');
+      partialFeedback.className = 'alert alert-warning mt-2';
+      const message = selectedCorrectAnswers.length === 1 
+        ? "You've found a correct answer, but not all of them."
+        : "You've found some correct answers, but there are more!";
+      partialFeedback.innerHTML = message;
+      form.querySelector('.quiz-question').insertBefore(partialFeedback, submitButton.parentElement);
+    }
 
     // Show feedback for each selected answer
     selectedInputs.forEach(input => {
@@ -194,9 +225,13 @@ export class QuizElement extends LitElement {
       textInput.style.backgroundColor = '';
     }
 
-    // Hide all feedback asides
+    // Hide all feedback asides, including any partial success feedback
     this.querySelectorAll('aside').forEach(aside => {
       aside.style.display = 'none';
+      // Remove any dynamically added partial success feedback
+      if (aside.classList.contains('alert-warning')) {
+        aside.remove();
+      }
     });
 
     // Show submit button and hide reset button
@@ -209,6 +244,61 @@ export class QuizElement extends LitElement {
       resetButton.style.display = 'none';
     }
   }
+
+  // Generate a unique quiz ID based on quiz name
+  generateQuizId(form) {
+    const name = this.getAttribute('name');
+    console.log('Quiz name:', name);
+    if (!name) {
+      console.warn('Quiz element is missing a name attribute. State will not be saved.', this);
+      return null;
+    }
+    return `quiz_${name}`;
+  }
+
+  // Save the current state of the quiz
+  saveQuizState(form) {
+    const quizId = this.generateQuizId(form);
+    if (!quizId) return; // Don't save if no quiz ID (no name attribute)
+    
+    const state = {
+      selectedInputs: Array.from(form.querySelectorAll('input')).map(input => ({
+        type: input.type,
+        name: input.name,
+        id: input.id,
+        value: input.type === 'text' ? input.value : input.checked
+      }))
+    };
+    storage.set(quizId, JSON.stringify(state));
+  }
+
+  // Restore previously saved state
+  restoreQuizState(form) {
+    const quizId = this.generateQuizId(form);
+    if (!quizId) return false; // Don't restore if no quiz ID (no name attribute)
+    
+    const savedState = storage.get(quizId);
+    if (!savedState) return false;
+    
+    try {
+      const state = JSON.parse(savedState);
+      state.selectedInputs.forEach(savedInput => {
+        const input = form.querySelector(`input#${savedInput.id}`) || 
+                     form.querySelector(`input[name="${savedInput.name}"]`);
+        if (input) {
+          if (input.type === 'text') {
+            input.value = savedInput.value;
+          } else {
+            input.checked = savedInput.value;
+          }
+        }
+      });
+      return true;
+    } catch (e) {
+      console.error('Error restoring quiz state:', e);
+      return false;
+    }
+  }
 }
 
-customElements.define('quiz-element', QuizElement);
+customElements.define('single-question-quiz-element', SingleQuestionQuizElement);
