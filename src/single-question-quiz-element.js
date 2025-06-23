@@ -25,7 +25,7 @@ export class SingleQuestionQuizElement extends LitElement {
       resetButton.addEventListener('click', () => {
         this.resetQuiz(form);
         // Clear stored state when quiz is reset
-        const quizId = this.generateQuizId(form);
+        const quizId = this.getQuizName(form);
         if (quizId) storage.set(quizId, null);
       });
     }
@@ -96,7 +96,6 @@ export class SingleQuestionQuizElement extends LitElement {
     });
 
     // Show feedback based on correctness
-    const isCorrect = selectedInput.getAttribute('data-correct') === 'true';
     const feedback = selectedInput.parentElement.querySelector('aside');
     if (feedback) {
       feedback.style.display = 'block';
@@ -246,9 +245,8 @@ export class SingleQuestionQuizElement extends LitElement {
   }
 
   // Generate a unique quiz ID based on quiz name
-  generateQuizId(form) {
+  getQuizName() {
     const name = this.getAttribute('name');
-    console.log('Quiz name:', name);
     if (!name) {
       console.warn('Quiz element is missing a name attribute. State will not be saved.', this);
       return null;
@@ -258,7 +256,7 @@ export class SingleQuestionQuizElement extends LitElement {
 
   // Save the current state of the quiz
   saveQuizState(form) {
-    const quizId = this.generateQuizId(form);
+    const quizId = this.getQuizName();
     if (!quizId) return; // Don't save if no quiz ID (no name attribute)
     
     const state = {
@@ -274,7 +272,7 @@ export class SingleQuestionQuizElement extends LitElement {
 
   // Restore previously saved state
   restoreQuizState(form) {
-    const quizId = this.generateQuizId(form);
+    const quizId = this.getQuizName();
     if (!quizId) return false; // Don't restore if no quiz ID (no name attribute)
     
     const savedState = storage.get(quizId);
@@ -283,8 +281,13 @@ export class SingleQuestionQuizElement extends LitElement {
     try {
       const state = JSON.parse(savedState);
       state.selectedInputs.forEach(savedInput => {
-        const input = form.querySelector(`input#${savedInput.id}`) || 
-                     form.querySelector(`input[name="${savedInput.name}"]`);
+        let input = null;
+        if (savedInput.id) {
+          input = form.querySelector(`input#${savedInput.id}`);
+        }
+        if (!input) {
+          input = form.querySelector(`input[name="${savedInput.name}"]`);
+        }
         if (input) {
           if (input.type === 'text') {
             input.value = savedInput.value;
